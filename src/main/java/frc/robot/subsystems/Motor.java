@@ -7,13 +7,16 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.RunMotor;
 
 public class Motor extends SubsystemBase {
   /** Creates a new Motor. */
 
   WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
 
-  public Motor() {}
+  public Motor() {
+    setDefaultCommand(new RunMotor());
+  }
 
   public void startMotor() {
     motor1.set(0.5);
@@ -27,6 +30,6 @@ public class Motor extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    startMotor();
+    
   }
 }
