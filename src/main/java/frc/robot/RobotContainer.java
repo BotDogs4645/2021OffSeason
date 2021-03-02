@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunMotor;
+import frc.robot.commands.RunMotorReverse;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Motor;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,6 +33,8 @@ public class RobotContainer {
   Joystick joy1 = new Joystick(1);
   
   JoystickButton runMotorButton = new JoystickButton(joy1, 1);
+  
+  JoystickButton runMotorReverseButton = new JoystickButton(joy1, 2);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -49,6 +52,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     runMotorButton.whileHeld(new RunMotor(motorSubsystem) );
+
+    runMotorReverseButton.whileHeld(new RunMotorReverse(motorSubsystem));
 
   }
 

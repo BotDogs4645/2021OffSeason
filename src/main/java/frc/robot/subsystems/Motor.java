@@ -25,6 +25,10 @@ public class Motor extends SubsystemBase {
     motor1.set(0);
   }
 
+  public void startMotorReverse() {
+    motor1.set(-0.5);
+  }
+
 
   @Override
   public void periodic() {
