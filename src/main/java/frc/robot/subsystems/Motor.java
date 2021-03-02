@@ -15,7 +15,6 @@ public class Motor extends SubsystemBase {
   WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
 
   public Motor() {
-    setDefaultCommand(new RunMotor());
   }
 
   public void startMotor() {

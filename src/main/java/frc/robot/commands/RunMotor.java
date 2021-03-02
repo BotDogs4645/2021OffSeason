@@ -5,13 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.RobotContainer;
 
 public class RunMotor extends CommandBase {
   /** Creates a new RunMotor. */
-  public RunMotor() {
+  public RunMotor(Subsystem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.motorSubsystem);
+    addRequirements(sub);
   }
 
   // Called when the command is initially scheduled.

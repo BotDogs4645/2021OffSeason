@@ -48,7 +48,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    runMotorButton.whileHeld(new RunMotor() );
+    runMotorButton.whileHeld(new RunMotor(motorSubsystem) );
 
   }
 
