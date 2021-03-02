@@ -13,6 +13,7 @@ import frc.robot.subsystems.Motor;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MotorCommand;
+import frc.robot.commands.ReverseMotorCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,6 +33,8 @@ public class RobotContainer {
 
   public static final JoystickButton runMotorButton = new JoystickButton(stick, 1);
 
+  public static final JoystickButton reverseMotorButton = new JoystickButton(stick, 2);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -45,7 +48,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    runMotorButton.whileHeld(new MotorCommand());
+    runMotorButton.whileHeld(new MotorCommand(motorSubsystem));
+    reverseMotorButton.whileHeld(new ReverseMotorCommand(motorSubsystem));
   }
 
   /**
