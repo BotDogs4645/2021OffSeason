@@ -7,7 +7,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.MotorCommand;
+import frc.robot.commands.UltrasonicMotorCommand;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 
 
@@ -15,9 +16,10 @@ public class Motor extends SubsystemBase {
   /** Creates a new Motor. */
 
   WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
+  private final AnalogInput ultrasonic = new AnalogInput(0);
 
   public Motor() {
-
+    setDefaultCommand(new UltrasonicMotorCommand(this));
   }
 
   public void startMotor() {
@@ -30,6 +32,14 @@ public class Motor extends SubsystemBase {
 
   public void reverseMotor() {
     motor1.set(-0.5);
+  }
+
+  public void ultrasonicMotor() {
+    double rawValue = ultrasonic.getValue();
+    double currentDistance = rawValue * 0.125;
+    if (currentDistance < 10) {
+      motor1.set(0.5);
+    }
   }
 
   @Override
