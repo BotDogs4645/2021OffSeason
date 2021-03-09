@@ -8,13 +8,22 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.RunMotor;
+import frc.robot.commands.RunMotorByDistance;
+import edu.wpi.first.wpilibj.AnalogInput;
+
+
+
 
 public class Motor extends SubsystemBase {
   /** Creates a new Motor. */
 
   WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
+  public final AnalogInput ultrasonic = new AnalogInput(0);
+
+
 
   public Motor() {
+    setDefaultCommand(new RunMotorByDistance(this));
   }
 
   public void startMotor() {
