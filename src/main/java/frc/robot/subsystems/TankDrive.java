@@ -17,7 +17,7 @@ public class TankDrive extends SubsystemBase {
   public void driveWithJoystick() {
     double forward = RobotContainer.stick.getY() * 0.8;
     double turn = RobotContainer.stick.getZ() * 0.7;
-    RobotContainer.diffDrive.arcadeDrive(forward, turn);
+    RobotContainer.diffDrive.arcadeDrive(forward, -turn);
   }  
 
   public void stop() {
