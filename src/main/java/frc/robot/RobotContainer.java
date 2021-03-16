@@ -7,11 +7,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveForward;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RunMotor;
 import frc.robot.commands.RunMotorReverse;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Motor;
+import frc.robot.subsystems.TankDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,6 +29,8 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   public final static Motor motorSubsystem = new Motor();
+  
+  public final static TankDrive tankDriveSubsystem = new TankDrive();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -35,6 +39,8 @@ public class RobotContainer {
   JoystickButton runMotorButton = new JoystickButton(joy1, 1);
   
   JoystickButton runMotorReverseButton = new JoystickButton(joy1, 2);
+
+  JoystickButton driveForwardButton = new JoystickButton(joy1, 3);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -54,6 +60,8 @@ public class RobotContainer {
     runMotorButton.whileHeld(new RunMotor(motorSubsystem) );
 
     runMotorReverseButton.whileHeld(new RunMotorReverse(motorSubsystem));
+
+    driveForwardButton.whileHeld(new DriveForward(tankDriveSubsystem));
 
   }
 
