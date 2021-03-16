@@ -16,7 +16,7 @@ public class Motor extends SubsystemBase {
   /** Creates a new Motor. */
 
   WPI_TalonSRX motor1 = new WPI_TalonSRX(0);
-  private final AnalogInput ultrasonic = new AnalogInput(0);
+  public final AnalogInput ultrasonic = new AnalogInput(0);
 
   public Motor() {
     setDefaultCommand(new UltrasonicMotorCommand(this));
@@ -34,13 +34,7 @@ public class Motor extends SubsystemBase {
     motor1.set(-0.5);
   }
 
-  public void ultrasonicMotor() {
-    double rawValue = ultrasonic.getValue();
-    double currentDistance = rawValue * 0.125;
-    if (currentDistance < 10) {
-      motor1.set(0.5);
-    }
-  }
+  
 
   @Override
   public void periodic() {

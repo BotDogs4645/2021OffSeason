@@ -4,12 +4,17 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Motor;
+import frc.robot.subsystems.TankDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MotorCommand;
@@ -27,6 +32,8 @@ public class RobotContainer {
 
   public final static Motor motorSubsystem = new Motor();
 
+  public final static TankDrive tankDriveSubsystem = new TankDrive();
+
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public static final Joystick stick = new Joystick(0);
@@ -34,6 +41,22 @@ public class RobotContainer {
   public static final JoystickButton runMotorButton = new JoystickButton(stick, 1);
 
   public static final JoystickButton reverseMotorButton = new JoystickButton(stick, 2);
+
+  //TankDrive Motors
+
+  public static final WPI_TalonSRX frontLeft = new WPI_TalonSRX(1);
+  public static final WPI_TalonSRX middleLeft = new WPI_TalonSRX(2);
+  public static final WPI_TalonSRX rearLeft = new WPI_TalonSRX(3);
+
+  public static final WPI_TalonSRX frontRight = new WPI_TalonSRX(4);
+  public static final WPI_TalonSRX middleRight = new WPI_TalonSRX(5);
+  public static final WPI_TalonSRX rearRight = new WPI_TalonSRX(6);
+
+  public static final SpeedControllerGroup leftSide = new SpeedControllerGroup(frontLeft, middleLeft, rearLeft);
+  public static final SpeedControllerGroup rightSide = new SpeedControllerGroup(frontRight, middleRight, rearRight);
+
+  public static final DifferentialDrive diffDrive = new DifferentialDrive(leftSide, rightSide);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

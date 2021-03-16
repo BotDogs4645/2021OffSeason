@@ -8,38 +8,27 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.RobotContainer;
 
-public class UltrasonicMotorCommand extends CommandBase {
-  /** Creates a new UltrasonicMotorCommand. */
-  public UltrasonicMotorCommand(Subsystem sub) {
+public class TankDriveCommand extends CommandBase {
+  /** Creates a new TankDriveCommand. */
+  public TankDriveCommand(Subsystem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(sub);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rawValue = RobotContainer.motorSubsystem.ultrasonic.getValue();
-    double currentDistance = rawValue * 0.125;
-
-    if (currentDistance < 10){
-      RobotContainer.motorSubsystem.stopMotor();
-    }
-    else {
-      RobotContainer.motorSubsystem.startMotor();
-    } 
-
+    RobotContainer.tankDriveSubsystem.driveWithJoystick();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.motorSubsystem.stopMotor();
+    RobotContainer.tankDriveSubsystem.stop();
   }
 
   // Returns true when the command should end.
